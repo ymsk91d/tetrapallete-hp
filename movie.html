@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>映像制作｜合同会社TetraPallete（MV・PV・YouTube・ライブ撮影）</title>
+<meta name="description" content="TetraPalleteの映像制作事業。ミュージックビデオ・PV・YouTube企画・ライブ撮影・編集まで、企画から納品まで一気通貫で制作します。アイドル制作で培ったノウハウで“伝わる映像”を。">
+<meta property="og:title" content="映像制作｜合同会社TetraPallete">
+<meta property="og:description" content="MV・PV・YouTube企画・ライブ撮影・編集まで一気通貫で制作。">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body id="top">
+
+<header class="site-header" id="siteHeader">
+  <div class="container header__inner">
+    <a class="logo" href="index.html" aria-label="TetraPallete ホーム">
+      <img class="logo__img" src="assets/logo/logo.svg" alt="合同会社TetraPallete" onerror="this.classList.add('is-missing')">
+      <span class="logo__fallback">Tetra&nbsp;Pallete<small>LLC.</small></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="index.html#about">ABOUT</a>
+      <a href="artists.html">ARTISTS</a>
+      <a href="movie.html" aria-current="page">MOVIE</a>
+      <a href="audition.html">AUDITION</a>
+      <a href="contact.html">CONTACT</a>
+      <a class="btn-line" href="https://lin.ee/KdHDhzV" target="_blank" rel="noopener">LINE</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
+  <div class="container page-hero__inner">
+    <p class="crumb"><a href="index.html">HOME</a> ／ MOVIE</p>
+    <p class="page-hero__en">MOVIE</p>
+    <h1 class="page-hero__title">映像制作</h1>
+    <p class="page-hero__lead">“こんな映像が作れます。” ミュージックビデオ・PV・YouTube企画からライブ撮影・編集まで、企画から納品まで一気通貫。アイドルプロデュースで培った「人と物語を魅せる」力で、心が動く映像をつくります。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="mv-feature">
+      <button class="video video--full" data-yt="" aria-label="代表作を再生" style="position:absolute;inset:0;width:100%;height:100%">
+        <span class="video__thumb"></span><span class="video__play" aria-hidden="true"></span>
+        <span class="video__meta"><b>代表作（MV）</b><small>後で動画を埋め込み</small></span>
+      </button>
+    </div>
+
+    <header class="sec-head"><span class="sec-head__en">SERVICE</span><h2 class="sec-head__ja">提供できること</h2></header>
+    <div class="mv-services">
+      <article class="mv-card reveal"><span class="mv-card__no">01</span><h3>ミュージックビデオ</h3><p>楽曲の世界観を映像化。コンセプト設計・ロケ・演出までトータルでプロデュースします。</p></article>
+      <article class="mv-card reveal" data-delay="1"><span class="mv-card__no">02</span><h3>PV・プロモーション</h3><p>商品・ブランド・グループの魅力を伝えるプロモーション映像を制作します。</p></article>
+      <article class="mv-card reveal" data-delay="2"><span class="mv-card__no">03</span><h3>YouTube企画・撮影</h3><p>企画立案からシリーズ運用まで。チャンネルを伸ばすコンテンツ設計が得意です。</p></article>
+      <article class="mv-card reveal"><span class="mv-card__no">04</span><h3>ライブ撮影</h3><p>ライブ・イベントのマルチカメラ収録。臨場感のあるステージ映像をお届けします。</p></article>
+      <article class="mv-card reveal" data-delay="1"><span class="mv-card__no">05</span><h3>編集・MA</h3><p>カット編集・カラーグレーディング・テロップ・音声調整まで丁寧に仕上げます。</p></article>
+      <article class="mv-card reveal" data-delay="2"><span class="mv-card__no">06</span><h3>ダンス映像・その他</h3><p>Dance Practice、歌ってみた、各種ショート動画など幅広く対応します。</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="movie section" id="works">
+  <div class="container">
+    <header class="sec-head sec-head--light"><span class="sec-head__en">WORKS</span><h2 class="sec-head__ja">制作実績</h2></header>
+    <div class="movie__tabs" role="tablist">
+      <button class="tab is-active" data-filter="all">すべて</button>
+      <button class="tab" data-filter="mv">MV</button>
+      <button class="tab" data-filter="cover">歌ってみた</button>
+      <button class="tab" data-filter="plan">企画</button>
+      <button class="tab" data-filter="dance">Dance Practice</button>
+    </div>
+    <div class="movie__grid" id="movieGrid">
+      <button class="video" data-cat="mv" data-yt="" aria-label="動画を再生"><span class="video__thumb"></span><span class="video__play" aria-hidden="true"></span><span class="video__meta"><b>アルカナ</b><small>MV / HALO PALLETE</small></span></button>
+      <button class="video" data-cat="mv" data-yt="" aria-label="動画を再生"><span class="video__thumb"></span><span class="video__play" aria-hidden="true"></span><span class="video__meta"><b>黎明</b><small>MV / ヒトノユメ</small></span></button>
+      <button class="video" data-cat="mv" data-yt="" aria-label="動画を再生"><span class="video__thumb"></span><span class="video__play" aria-hidden="true"></span><span class="video__meta"><b>君がくれた夏</b><small>MV</small></span></button>
+      <button class="video" data-cat="cover" data-yt="" aria-label="動画を再生"><span class="video__thumb"></span><span class="video__play" aria-hidden="true"></span><span class="video__meta"><b>花になって</b><small>歌ってみた</small></span></button>
+      <button class="video" data-cat="plan" data-yt="" aria-label="動画を再生"><span class="video__thumb"></span><span class="video__play" aria-hidden="true"></span><span class="video__meta"><b>耐久選手権!!</b><small>企画</small></span></button>
+      <button class="video" data-cat="dance" data-yt="" aria-label="動画を再生"><span class="video__thumb"></span><span class="video__play" aria-hidden="true"></span><span class="video__meta"><b>青春カタオモイ</b><small>Dance Practice</small></span></button>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tint">
+  <div class="container">
+    <header class="sec-head"><span class="sec-head__en">FLOW</span><h2 class="sec-head__ja">制作の流れ</h2></header>
+    <ol class="flow">
+      <li class="reveal"><h3>ヒアリング</h3><p>目的・イメージ・ご予算をお聞かせください。お気軽にご相談を。</p></li>
+      <li class="reveal" data-delay="1"><h3>企画・構成</h3><p>コンセプト・絵コンテ・スケジュールをご提案します。</p></li>
+      <li class="reveal" data-delay="2"><h3>撮影</h3><p>ロケ・スタジオ・ライブ会場など、最適な環境で撮影します。</p></li>
+      <li class="reveal"><h3>編集・納品</h3><p>編集・調整を経て、ご確認いただき納品します。</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" style="text-align:center">
+  <div class="container">
+    <h2 class="sec-head__ja" style="margin-bottom:.6em">映像制作のご相談はお気軽に</h2>
+    <p style="color:var(--ink-soft);margin-bottom:1.6em">まずはイメージだけでも大丈夫です。ヒアリングからご一緒します。</p>
+    <a class="btn btn--primary" href="contact.html">お問い合わせへ</a>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a class="logo logo--footer" href="index.html" aria-label="TetraPallete">
+        <img class="logo__img" src="assets/logo/logo.svg" alt="合同会社TetraPallete" onerror="this.classList.add('is-missing')">
+        <span class="logo__fallback">Tetra&nbsp;Pallete<small>LLC.</small></span>
+      </a>
+      <p class="footer__tagline">想いを重ねて、夢を運び、未来を創る。</p>
+      <div class="footer__sns">
+        <a href="https://x.com/halopallete" target="_blank" rel="noopener">X</a>
+        <a href="https://www.youtube.com/@halopallete2347" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.tiktok.com/@halopallete" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://lin.ee/KdHDhzV" target="_blank" rel="noopener">LINE</a>
+      </div>
+    </div>
+    <div class="footer__contact">
+      <h3>お問い合わせ</h3>
+      <p>映像制作・イベント・取材などのご相談はこちらから。</p>
+      <p class="footer__line"><a href="mailto:tetra.pallete@gmail.com">tetra.pallete@gmail.com</a><br><a href="tel:0369124276">TEL 03-6912-4276</a></p>
+      <a class="btn btn--ghost btn--sm" href="contact.html">お問い合わせフォーム</a>
+      <p class="footer__company">合同会社TetraPallete<br>〒173-0004 東京都板橋区板橋1-35-10 YIKビルB01-B号室</p>
+    </div>
+  </div>
+  <p class="footer__copy">© <span id="year"></span> TetraPallete LLC.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

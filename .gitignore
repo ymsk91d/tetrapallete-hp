@@ -1,0 +1,10 @@
+# ローカルプレビュー用（環境依存・絶対パス）
+serve.ps1
+
+# 内部用デザインカンプ（公開サイトには不要）
+assets/mockups/
+
+# OS / エディタ
+Thumbs.db
+.DS_Store
+desktop.ini

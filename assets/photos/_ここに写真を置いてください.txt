@@ -1,0 +1,14 @@
+このフォルダに写真を置くと、サイトに自動で反映されます。
+ファイル名は下記の通りにしてください（小文字・英語・拡張子そのまま）。
+
+■ ヒーロー（トップ最上部）のメンバー集合写真
+  hero-members.png    ← できれば「背景を切り抜いた透過PNG」推奨（動かす前提）
+                         透過でない普通の写真でも可（その場合は jpg でもOK：hero-members.jpg）
+
+■ ARTISTS セクションの各グループ写真（集合写真）
+  halo-pallete.jpg    ← HALO PALLETE
+  hitonoyume.jpg      ← ヒトノユメ
+  frolic-park.jpg     ← Frolic Park
+
+※ jpg / png どちらでもOK。置いたら教えてください（拡張子に合わせてコード側を1行直します）。
+※ 高解像度の原本があるほどキレイです。
