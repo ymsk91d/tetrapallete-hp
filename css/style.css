@@ -319,6 +319,51 @@ p,li,dd,figcaption,.sec-head__note,.about__lead,.hero__lead,.page-hero__lead,.ar
 .contact-side dl{display:grid;grid-template-columns:auto 1fr;gap:.5em 1em;font-size:.92rem}
 .contact-side dt{color:var(--ink-soft)}
 
+/* ===== Motion enhancement (GSAP/Lenis) ===== */
+/* no-JS / fallback: never hide content */
+html:not(.js) .reveal{opacity:1!important;transform:none!important}
+
+/* Preloader */
+.preloader{display:none}
+html.js .preloader{display:flex;position:fixed;inset:0;z-index:300;align-items:center;justify-content:center;
+  background:radial-gradient(120% 120% at 50% 40%,#FFF4E6,#FFE6F0 70%,#EAF7FF);
+  animation:preloaderFailsafe .6s ease 2.4s forwards}
+.preloader__logo{font-family:var(--font-en);font-weight:700;font-size:clamp(1.6rem,5vw,2.4rem);color:var(--orange-d);
+  letter-spacing:.01em;opacity:0;transform:translateY(8px);animation:preLogo .8s cubic-bezier(.2,.7,.2,1) forwards}
+.preloader__logo small{font-size:.5em;letter-spacing:.2em;margin-left:.4em;vertical-align:.4em;color:var(--orange)}
+.preloader.is-hidden{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .6s ease,visibility .6s}
+@keyframes preLogo{to{opacity:1;transform:none}}
+@keyframes preloaderFailsafe{to{opacity:0;visibility:hidden}}
+
+/* Hero opening: let JS drive the lines / image mask when libs are active */
+html.gsap .hero__title .line{animation:none}
+html.gsap .frame--hero{clip-path:inset(0 0 100% 0)}
+
+/* Marquee band */
+.marquee{overflow:hidden;white-space:nowrap;padding:16px 0;
+  background:linear-gradient(90deg,#FFE7F1,#FFF1E0 50%,#E6F4FF);
+  border-block:1px solid rgba(245,146,30,.14)}
+.marquee__track{display:inline-flex;will-change:transform;animation:marqueeMove 26s linear infinite}
+.marquee__item{font-family:var(--font-en);font-weight:700;letter-spacing:.05em;
+  font-size:clamp(1.1rem,3vw,1.9rem);color:var(--orange-d);padding-right:1rem}
+.marquee__item i{font-style:normal;color:var(--pink);margin:0 .35em}
+@keyframes marqueeMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Artists stage / track (default = centered 3-col grid; JS may switch to horizontal pin) */
+.artists-stage{width:100%}
+.artist-track{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,34px);
+  width:min(var(--maxw),92%);margin-inline:auto}
+.artists-stage.is-horizontal{overflow:hidden;height:100vh;display:flex;align-items:center}
+.artists-stage.is-horizontal .artist-track{display:flex;width:max-content;grid-template-columns:none;
+  margin-inline:0;padding-inline:max(8vw,40px);gap:clamp(24px,3vw,48px);align-items:center}
+.artists-stage.is-horizontal .artist{flex:0 0 clamp(300px,34vw,420px)}
+.artists-stage.is-horizontal .artist:nth-child(even){transform:none}
+.artists-stage.is-horizontal .frame--artist{aspect-ratio:auto;height:min(50vh,460px)}
+.artists-stage.is-horizontal .artist__body{padding-block:18px}
+
+/* tilt/magnetic: snappier transform while interacting */
+.tilting{transition:transform .12s ease-out!important}
+
 /* ===== Responsive ===== */
 @media(max-width:900px){
   .nav{position:fixed;inset:0 0 0 auto;width:min(78vw,320px);flex-direction:column;justify-content:center;gap:26px;
@@ -336,7 +381,7 @@ p,li,dd,figcaption,.sec-head__note,.about__lead,.hero__lead,.page-hero__lead,.ar
   .hero__cta{justify-content:center}
   .hero__title .accent{margin-inline:auto}
   .stats{grid-template-columns:1fr 1fr}
-  .biz,.artist-grid{grid-template-columns:1fr}
+  .biz,.artist-track{grid-template-columns:1fr}
   .movie__grid{grid-template-columns:1fr 1fr}
   .video--lg{grid-column:span 2;grid-row:auto}
   .footer__grid{grid-template-columns:1fr}
@@ -348,7 +393,7 @@ p,li,dd,figcaption,.sec-head__note,.about__lead,.hero__lead,.page-hero__lead,.ar
   .contact-layout{grid-template-columns:1fr}
 }
 @media(max-width:560px){
-  .biz,.stats,.artist-grid,.movie__grid{grid-template-columns:1fr}
+  .biz,.stats,.artist-track,.movie__grid{grid-template-columns:1fr}
   .video--lg{grid-column:auto}
   .artist:nth-child(even){transform:none}
   .stats{gap:24px}
@@ -361,4 +406,7 @@ p,li,dd,figcaption,.sec-head__note,.about__lead,.hero__lead,.page-hero__lead,.ar
   *{animation:none!important}
   .reveal{opacity:1;transform:none;transition:none}
   .hero__title .line{opacity:1;transform:none}
+  html.js .preloader{display:none!important}
+  html.gsap .frame--hero{clip-path:none!important}
+  .marquee__track{transform:none!important}
 }
