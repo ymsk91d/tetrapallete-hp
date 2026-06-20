@@ -57,13 +57,13 @@
       ];
       // live-tunable fluid config (the tuning panel edits these)
       var CFG = {
-        brightness: 0.06, curl: 9, splatRadius: 0.14, densityDissipation: 3.4, velocityDissipation: 0.85,
-        pressure: 0.8, pressureIterations: 20, splatForce: 4500,
-        bloom: false, bloomIntensity: 0.6, sunrays: false, shading: false, colorful: false, colorUpdateSpeed: 10,
-        dyeResolution: 640, simResolution: 110, paletteIndex: 0
+        brightness: 0.09, curl: 22, splatRadius: 0.25, densityDissipation: 1.7, velocityDissipation: 0.2,
+        pressure: 0.35, pressureIterations: 28, splatForce: 3600,
+        bloom: false, bloomIntensity: 0, sunrays: false, shading: true, colorful: false, colorUpdateSpeed: 13,
+        dyeResolution: 640, simResolution: 160, paletteIndex: 3
       };
       // cursor handler params (live-tunable)
-      var P = { GATE: 8, MIN_SPEED: 0.16, FORCE: 1.1, STEPS: 16 };
+      var P = { GATE: 16, MIN_SPEED: 0.16, FORCE: 1.4, STEPS: 18 };
       // persist tuning across reloads
       var STORE_KEY = 'tetraFluidTune_v1';
       try {

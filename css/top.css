@@ -16,7 +16,7 @@ p,li{text-wrap:pretty;line-break:strict}
 .container{width:min(var(--maxw),92%);margin-inline:auto}
 
 /* living palette = WebGL fluid (ink-in-water marbling) over a pastel base */
-.fluid{position:fixed!important;inset:0!important;z-index:0;overflow:hidden;opacity:.82;
+.fluid{position:fixed!important;inset:0!important;z-index:0;overflow:hidden;opacity:1;
   background:linear-gradient(125deg,#FFE7F1,#FFF1DE 40%,#EAF4FF 74%,#EAFBF2);
   background-size:200% 200%;background-position:0% 50%;animation:fluidDrift 36s ease-in-out infinite}
 @keyframes fluidDrift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
