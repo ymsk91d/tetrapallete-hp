@@ -4,6 +4,12 @@ serve.ps1
 # 内部用デザインカンプ（公開サイトには不要）
 assets/mockups/
 
+# ローカルdev設定（プレビュー起動など）
+.claude/
+
+# 旧デザイン検討用デモ（公開サイトには不要）
+demo-hero-*.html
+
 # OS / エディタ
 Thumbs.db
 .DS_Store

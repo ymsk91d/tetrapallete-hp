@@ -3,64 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js')</script>
 <title>お問い合わせ｜合同会社TetraPallete</title>
-<meta name="description" content="合同会社TetraPalleteへのお問い合わせ。映像制作・イベント・取材などのご相談はフォーム、またはメール・お電話・LINEから。">
+<meta name="description" content="合同会社TetraPalleteへのお問い合わせ。映像制作・音楽制作・イベント・取材・オーディションなどのご相談はフォーム、またはメール・お電話・LINEから。">
 <meta property="og:title" content="お問い合わせ｜合同会社TetraPallete">
-<meta property="og:description" content="映像制作・イベント・取材などのご相談はこちらから。">
+<meta property="og:description" content="映像・音楽・イベント・取材などのご相談はこちらから。">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/top.css?v=20260621a">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+<script defer src="js/top.js?v=20260621a"></script>
 </head>
-<body id="top">
+<body id="top" class="sub" style="--pg:#F5921E;--cc:#F5921E">
 
-<header class="site-header" id="siteHeader">
-  <div class="container header__inner">
-    <a class="logo" href="index.html" aria-label="TetraPallete ホーム">
-      <img class="logo__img" src="assets/logo/logo.svg" alt="合同会社TetraPallete" onerror="this.classList.add('is-missing')">
-      <span class="logo__fallback">Tetra&nbsp;Pallete<small>LLC.</small></span>
-    </a>
+<div class="subbg" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__bars"><i></i><i></i><i></i><i></i></div>
+  <span class="loader__logo">Tetra&nbsp;Pallete</span>
+</div>
+
+<header class="hd" id="hd">
+  <div class="container hd__in">
+    <a class="hd__logo" href="index.html">Tetra<b>Pallete</b></a>
     <nav class="nav" id="nav">
-      <a href="index.html#about">ABOUT</a>
-      <a href="artists.html">ARTISTS</a>
-      <a href="movie.html">MOVIE</a>
-      <a href="audition.html">AUDITION</a>
+      <span class="nav__drop">
+        <a class="nav__dtop" href="talent.html">TALENT</a>
+        <span class="nav__menu">
+          <a href="talent.html#halo">HALO PALLETE</a>
+          <a href="talent.html#hitonoyume">ヒトノユメ</a>
+          <a href="talent.html#frolic">Frolic Park</a>
+        </span>
+      </span>
+      <a href="video.html">VIDEO</a>
+      <a href="music.html">MUSIC</a>
+      <a href="studio.html">STUDIO</a>
       <a href="contact.html" aria-current="page">CONTACT</a>
-      <a class="btn-line" href="https://lin.ee/KdHDhzV" target="_blank" rel="noopener">LINE</a>
+      <a class="nav__line" href="https://lin.ee/KdHDhzV" target="_blank" rel="noopener">LINE</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="navtog" id="navtog" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<section class="page-hero">
-  <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
-  <div class="container page-hero__inner">
+<!-- PAGE HERO -->
+<section class="phero">
+  <div class="container">
     <p class="crumb"><a href="index.html">HOME</a> ／ CONTACT</p>
-    <p class="page-hero__en">CONTACT</p>
-    <h1 class="page-hero__title">お問い合わせ</h1>
-    <p class="page-hero__lead">映像制作・イベント・取材・オーディションなど、お気軽にご相談ください。フォームのほか、メール・お電話・LINEでも承ります。</p>
+    <p class="phero__en">CONTACT</p>
+    <h1 class="phero__title">お問い合わせ</h1>
+    <p class="phero__lead">映像制作・音楽制作・イベント・取材・オーディションなど、お気軽にご相談ください。フォームのほか、メール・お電話・LINEでも承ります。</p>
   </div>
 </section>
 
-<section class="section">
+<section class="sec" style="padding-top:clamp(20px,3vw,40px)">
   <div class="container">
-    <div class="contact-layout">
-      <form class="cform" id="contactForm" action="#" method="post" novalidate>
+    <div class="cgrid">
+      <form class="cform reveal-pop" id="contactForm" action="#" method="post" novalidate>
         <div class="field">
-          <label for="cf-type">お問い合わせ種別<span class="req-mark">必須</span></label>
+          <label for="cf-type">お問い合わせ種別<span class="req">必須</span></label>
           <select id="cf-type" name="type" required>
             <option value="">選択してください</option>
             <option>映像制作のご依頼・ご相談</option>
+            <option>音楽制作のご依頼・ご相談</option>
             <option>イベントのご依頼・ご相談</option>
+            <option>貸しスタジオについて</option>
             <option>取材・メディア</option>
             <option>オーディションについて</option>
             <option>その他</option>
           </select>
         </div>
         <div class="field">
-          <label for="cf-name">お名前<span class="req-mark">必須</span></label>
+          <label for="cf-name">お名前<span class="req">必須</span></label>
           <input id="cf-name" name="name" type="text" autocomplete="name" required>
         </div>
         <div class="field">
@@ -68,7 +87,7 @@
           <input id="cf-company" name="company" type="text" autocomplete="organization">
         </div>
         <div class="field">
-          <label for="cf-email">メールアドレス<span class="req-mark">必須</span></label>
+          <label for="cf-email">メールアドレス<span class="req">必須</span></label>
           <input id="cf-email" name="email" type="email" autocomplete="email" required>
         </div>
         <div class="field">
@@ -76,14 +95,14 @@
           <input id="cf-tel" name="tel" type="tel" autocomplete="tel">
         </div>
         <div class="field">
-          <label for="cf-message">お問い合わせ内容<span class="req-mark">必須</span></label>
+          <label for="cf-message">お問い合わせ内容<span class="req">必須</span></label>
           <textarea id="cf-message" name="message" required></textarea>
         </div>
-        <button class="btn btn--primary" type="submit">送信する</button>
-        <p class="cform__note">※ 送信機能は現在準備中です（送信先サービスは実装時に設定）。お急ぎの場合は下記メール・お電話・LINEをご利用ください。</p>
+        <button class="btn btn--p magnetic" type="submit">送信する</button>
+        <p class="cnote">※ 送信機能は現在準備中です（送信先サービスは実装時に設定）。お急ぎの場合は右記メール・お電話・LINEをご利用ください。</p>
       </form>
 
-      <aside class="contact-side">
+      <aside class="cside reveal-pop">
         <h3>直接のご連絡</h3>
         <div class="info">
           <p><b>メール</b><br><a href="mailto:tetra.pallete@gmail.com">tetra.pallete@gmail.com</a></p>
@@ -104,31 +123,26 @@
   </div>
 </section>
 
-<footer class="footer">
-  <div class="container footer__grid">
-    <div class="footer__brand">
-      <a class="logo logo--footer" href="index.html" aria-label="TetraPallete">
-        <img class="logo__img" src="assets/logo/logo.svg" alt="合同会社TetraPallete" onerror="this.classList.add('is-missing')">
-        <span class="logo__fallback">Tetra&nbsp;Pallete<small>LLC.</small></span>
-      </a>
-      <p class="footer__tagline">想いを重ねて、夢を運び、未来を創る。</p>
-      <div class="footer__sns">
-        <a href="https://x.com/halopallete" target="_blank" rel="noopener">X</a>
-        <a href="https://www.youtube.com/@halopallete2347" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://www.tiktok.com/@halopallete" target="_blank" rel="noopener">TikTok</a>
-        <a href="https://lin.ee/KdHDhzV" target="_blank" rel="noopener">LINE</a>
-      </div>
+<!-- FOOTER -->
+<footer class="ft">
+  <div class="container ft__grid">
+    <div>
+      <a class="hd__logo hd__logo--ft" href="index.html">Tetra<b>Pallete</b></a>
+      <p class="ft__tag">想いを重ねて、夢を運び、未来を創る。</p>
+      <div class="ft__sns"><a href="https://x.com/halopallete" target="_blank" rel="noopener">X</a><a href="https://www.youtube.com/@halopallete2347" target="_blank" rel="noopener">YouTube</a><a href="https://www.tiktok.com/@halopallete" target="_blank" rel="noopener">TikTok</a><a href="https://lin.ee/KdHDhzV" target="_blank" rel="noopener">LINE</a></div>
     </div>
-    <div class="footer__contact">
+    <div>
       <h3>お問い合わせ</h3>
-      <p>映像制作・イベント・取材などのご相談はこちらから。</p>
-      <p class="footer__line"><a href="mailto:tetra.pallete@gmail.com">tetra.pallete@gmail.com</a><br><a href="tel:0369124276">TEL 03-6912-4276</a></p>
-      <p class="footer__company">合同会社TetraPallete<br>〒173-0004 東京都板橋区板橋1-35-10 YIKビルB01-B号室</p>
+      <p>映像制作・音楽制作・イベント・取材などのご相談はこちらから。</p>
+      <p class="ft__line"><a href="mailto:tetra.pallete@gmail.com">tetra.pallete@gmail.com</a><br><a href="tel:0369124276">TEL 03-6912-4276</a></p>
+      <p class="ft__co">合同会社TetraPallete<br>〒173-0004 東京都板橋区板橋1-35-10 YIKビルB01-B号室</p>
     </div>
   </div>
-  <p class="footer__copy">© <span id="year"></span> TetraPallete LLC.</p>
+  <nav class="ft__nav container">
+    <a href="talent.html">TALENT</a><a href="video.html">VIDEO</a><a href="music.html">MUSIC</a><a href="studio.html">STUDIO</a><a href="contact.html">CONTACT</a>
+  </nav>
+  <p class="ft__cp">© <span id="year"></span> TetraPallete LLC.</p>
 </footer>
 
-<script src="js/main.js"></script>
 </body>
 </html>

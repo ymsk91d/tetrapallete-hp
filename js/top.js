@@ -31,8 +31,36 @@
     });
   });
 
+  /* video works filter (video.html): .vtab[data-filter] toggles #works .vid[data-cat] */
+  var vtabs = $$('.vtab');
+  if (vtabs.length) {
+    vtabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        vtabs.forEach(function (t) { t.classList.remove('is-active'); });
+        tab.classList.add('is-active');
+        var f = tab.getAttribute('data-filter');
+        $$('#works .vid').forEach(function (v) {
+          v.style.display = (f === 'all' || v.getAttribute('data-cat') === f) ? '' : 'none';
+        });
+      });
+    });
+  }
+
+  /* contact form (contact.html): client-side validation only — sending not wired yet */
+  var cform = $('#contactForm');
+  if (cform) {
+    cform.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!cform.checkValidity()) { cform.reportValidity(); return; }
+      window.alert('送信機能は現在準備中です。お手数ですが tetra.pallete@gmail.com・お電話（03-6912-4276）・LINE よりご連絡ください。');
+    });
+  }
+
   var loader = $('#loader');
   function hideLoader() { if (loader) loader.classList.add('is-hidden'); }
+
+  /* Scroll inertia / momentum removed entirely — plain native scroll (instant, no afterglow).
+     In-page anchors stay smooth via CSS scroll-behavior + scroll-padding-top. */
 
   /* ---- background: WebGL fluid (real fluid motion), low-emission + cursor-only ---- */
   if (!reduce) initFluid();
@@ -136,7 +164,7 @@
         document.addEventListener('visibilitychange', function () { if (document.hidden) reset(); });
       })();
 
-      buildTunePanel(el, CFG, P, applyCfg, reinit, saveStore, STORE_KEY);
+      // buildTunePanel(el, CFG, P, applyCfg, reinit, saveStore, STORE_KEY); // dev tuning panel — disabled for public release (baked defaults are in CFG/P above)
     } catch (e) {}
   }
 
@@ -265,19 +293,17 @@
     gsap.registerPlugin(ScrollTrigger);
     document.documentElement.classList.add('gsap');
 
-    if (window.Lenis) {
-      var lenis = new window.Lenis({ lerp: 0.13, wheelMultiplier: 1.1, smoothWheel: true });
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add(function (t) { lenis.raf(t * 1000); }); gsap.ticker.lagSmoothing(0);
-      $$('a[href^="#"]').forEach(function (a) { var id = a.getAttribute('href'); if (id && id.length > 1) a.addEventListener('click', function (e) { var t = document.querySelector(id); if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: -70 }); } }); });
-    }
+    // Native scroll (no JS smooth-scroll): instant input response, no startup cushion.
+    // JS inertia (Lenis) buffers the wheel through a rAF loop, which — combined with the
+    // always-on WebGL fluid stealing frames — produced the "delay before it moves" feel.
+    // In-page anchors stay smooth via CSS scroll-behavior + scroll-padding-top.
 
     function splitK(el) {
-      var noColor = el.closest('.sh--light') || el.closest('.aud');
       var chars;
       if (window.SplitType) { chars = new window.SplitType(el, { types: 'chars' }).chars; }
       else { chars = el.textContent.split('').map(function (ch) { var s = document.createElement('span'); s.textContent = ch; s.style.display = 'inline-block'; el.appendChild(s); return s; }); if (chars.length) el.firstChild && el.removeChild(el.firstChild); }
-      chars.forEach(function (c, i) { c.classList.add('ch'); if (!noColor) c.style.color = PAL[i % PAL.length]; });
+      // refined: single-color kinetic (chars inherit the heading colour; no per-char rainbow)
+      chars.forEach(function (c) { c.classList.add('ch'); });
       return chars;
     }
 
