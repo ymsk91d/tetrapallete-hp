@@ -20,14 +20,24 @@
     $$('a', nav).forEach(function (a) { a.addEventListener('click', function () { nav.classList.remove('open'); tog.classList.remove('open'); tog.setAttribute('aria-expanded', 'false'); }); });
   }
 
-  $$('.vid').forEach(function (v) {
+  var vids = $$('.vid');
+  function stopVid(v) {
+    if (!v.classList.contains('is-playing')) return;
+    if (v._poster != null) v.innerHTML = v._poster; // restore thumbnail / play button / label
+    v.classList.remove('is-playing');
+  }
+  vids.forEach(function (v) {
     v.addEventListener('click', function () {
       var id = v.getAttribute('data-yt');
       if (!id) { v.animate([{ transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'translateX(0)' }], { duration: 300 }); return; }
+      if (v.classList.contains('is-playing')) return; // already playing this one
+      if (v._poster == null) v._poster = v.innerHTML; // cache original markup on first play
+      vids.forEach(stopVid); // only one plays at a time — stop any other
       var f = document.createElement('iframe');
       f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
       f.title = 'movie'; f.allow = 'autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen = true;
       v.innerHTML = ''; v.appendChild(f);
+      v.classList.add('is-playing');
     });
   });
 
