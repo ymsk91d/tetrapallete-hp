@@ -152,8 +152,50 @@
   /* Scroll inertia / momentum removed entirely — plain native scroll (instant, no afterglow).
      In-page anchors stay smooth via CSS scroll-behavior + scroll-padding-top. */
 
-  /* ---- background: WebGL fluid (real fluid motion), low-emission + cursor-only ---- */
-  if (!reduce) initFluid();
+  /* ---- background ----
+     The WebGL fluid runs a continuous GPU physics solve (advection + 28 pressure iterations
+     every frame). On its own it was tolerable, but combined with the new hero <video> it made
+     the TOP page too heavy (janky scroll, stalled navigation). The fluid is the far heavier of
+     the two, so we drop it and let #fluid fall back to its lightweight animated pastel gradient
+     (the .fluid CSS base layer + fluidDrift). The hero keeps its video. Re-enable by flipping
+     USE_FLUID back to true if a lighter sim config is ever dialed in. */
+  var USE_FLUID = false;
+  var fluidSim = null;        // exposed so we can stop the GPU loop when leaving the page
+  if (USE_FLUID && !reduce) initFluid();
+
+  /* The TOP hero runs a WebGL fluid loop AND an autoplay <video> at once. Tearing both down
+     lazily during unload was stalling navigation away from TOP (the lag noticed after the
+     video was added). On pagehide we release them up-front so the click navigates instantly.
+     (We deliberately do NOT restart the fluid on tab re-show — calling sim.start() repeatedly
+     stacks rAF loops and saturates the main thread. Only the video is toggled on tab switch,
+     which is idempotent and safe.) */
+  (function () {
+    var heroVid = $('.hero__bg video');
+    var heroSec = $('.hero');
+    var offscreen = false;   // hero scrolled out of view → don't decode
+    function playable() { return heroVid && !document.hidden && !offscreen; }
+    function tryPlay() { if (playable() && heroVid.paused) { var p = heroVid.play(); if (p && p.catch) p.catch(function () {}); } }
+    function pause() { if (heroVid && !heroVid.paused) { try { heroVid.pause(); } catch (e) {} } }
+
+    window.addEventListener('pagehide', function () {
+      pause();
+      if (fluidSim) { try { fluidSim.stop(); } catch (e) {} }
+    });
+    if (heroVid) {
+      // Tab hidden → stop decoding; back → resume (idempotent, safe).
+      document.addEventListener('visibilitychange', function () { if (document.hidden) pause(); else tryPlay(); });
+
+      // Biggest runtime win, zero quality loss: a full-screen <video> keeps decoding every
+      // frame even after you scroll past it. Pause it once the hero leaves the viewport and
+      // resume when it returns, so only the first screenful pays the decode cost.
+      if ('IntersectionObserver' in window && heroSec) {
+        new IntersectionObserver(function (entries) {
+          offscreen = !entries[0].isIntersecting;
+          if (offscreen) pause(); else tryPlay();
+        }, { threshold: 0.01 }).observe(heroSec);
+      }
+    }
+  })();
 
   /* Real fluid sim via webgl-fluid-enhanced for the liquid motion the brand wants.
      White-out mitigation (the dye buffer is ADDITIVE, so heavy same-spot overlap can clip
@@ -213,12 +255,14 @@
         sim = new lib(el);
         applyCfg();
         sim.start();
+        fluidSim = sim;
         var cs = el.querySelectorAll('canvas');
         cv = cs[cs.length - 1];
         for (var i = 0; i < cs.length; i++) { if (cs[i] !== cv && cs[i].parentNode) cs[i].parentNode.removeChild(cs[i]); }
       }
       applyCfg();
       sim.start();
+      fluidSim = sim;
       cv = el.querySelector('canvas');
 
       // cursor-only, distance-gated + speed-gated + path-interpolated. No auto-emission.

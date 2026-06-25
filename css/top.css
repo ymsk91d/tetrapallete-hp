@@ -117,16 +117,31 @@ html.js .reveal-pop{opacity:0;transform:translateY(30px) scale(.96)}
 .sh__en .ch{display:inline-block;will-change:transform}
 
 /* hero */
-.hero{position:relative;z-index:2;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 0 90px}
-.hero__in{display:flex;flex-direction:column;align-items:center}
+/* z-index:4 lifts the hero ABOVE the film-grain overlay (.grain, z-index:3, mix-blend-mode).
+   Otherwise the grain soft-light-blends over the playing video and forces a full-screen
+   re-composite on every decoded frame — a real cost with zero visual benefit (the video has
+   its own texture). Lower static sections keep the grain. */
+.hero{position:relative;z-index:4;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 0 90px;overflow:hidden}
+.hero__bg{position:absolute;inset:0;z-index:0;overflow:hidden;background:#FFE7F1}
+.hero__bg video{width:100%;height:100%;object-fit:cover;display:block}
+.hero__bg::after{content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(255,253,247,.62) 0%,rgba(255,253,247,.22) 24%,rgba(255,253,247,.08) 40%),
+    radial-gradient(62% 66% at 50% 52%,rgba(255,253,247,.86) 0%,rgba(255,253,247,.56) 44%,rgba(255,253,247,.2) 76%,rgba(255,253,247,.05) 100%)}
+@media(prefers-reduced-motion:reduce){.hero__bg video{display:none}.hero__bg{background:linear-gradient(125deg,#FFE7F1,#FFF1DE 40%,#EAF4FF 74%,#EAFBF2)}}
+.hero__in{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
 .eyebrow{font-family:var(--en);font-weight:700;letter-spacing:.34em;font-size:clamp(.68rem,1.6vw,.8rem);color:var(--ink-soft);
   text-transform:uppercase;margin-bottom:28px}
 .eyebrow i{color:var(--ink-soft);font-style:normal;margin:0 .55em;opacity:.45}
 .hero__h1{font-family:var(--mincho);font-weight:800;line-height:1.18;font-size:clamp(3rem,11vw,8rem);letter-spacing:.02em}
 .hero__h1 .ch{display:inline-block;will-change:transform}
 .hero__sub{font-family:var(--mincho);font-weight:700;font-size:clamp(1.05rem,2.6vw,1.5rem);margin-top:.7em;color:var(--ink)}
+/* solid-ish cream panel for readability; no backdrop-filter:blur — blurring the moving video
+   behind it recomputes every frame for a barely-visible 2px effect. Bumped opacity slightly
+   to keep contrast without the blur. */
 .hero__lead{margin-top:1.5em;font-size:clamp(.96rem,2.3vw,1.1rem);color:var(--ink);max-width:38ch;
-  background:rgba(255,253,247,.46);backdrop-filter:blur(2px);padding:.7em 1.2em;border-radius:14px}
+  background:rgba(255,253,247,.62);padding:.7em 1.2em;border-radius:14px}
+@media(max-width:560px){.hero__lead br{display:none}}
 .hero__cta{margin-top:2.2em;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 .hero__scroll{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);width:26px;height:42px;border:2px solid rgba(120,90,60,.4);border-radius:14px;z-index:3}
 .hero__scroll span{position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;background:var(--orange);border-radius:2px;animation:sd 1.6s infinite}
