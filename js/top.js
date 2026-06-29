@@ -14,10 +14,30 @@
 
   var tog = $('#navtog'), nav = $('#nav');
   if (tog && nav) {
-    tog.addEventListener('click', function () {
-      var o = nav.classList.toggle('open'); tog.classList.toggle('open', o); tog.setAttribute('aria-expanded', o ? 'true' : 'false');
+    var drop = $('.nav__drop', nav), dtop = $('.nav__dtop', nav);
+    function setNav(o) {
+      nav.classList.toggle('open', o); tog.classList.toggle('open', o);
+      tog.setAttribute('aria-expanded', o ? 'true' : 'false');
+      document.body.style.overflow = o ? 'hidden' : '';   // lock background scroll while open
+      if (!o && drop) { drop.classList.remove('is-open'); if (dtop) dtop.setAttribute('aria-expanded', 'false'); }
+    }
+    tog.addEventListener('click', function () { setNav(!nav.classList.contains('open')); });
+    // mobile: TALENT toggles its sub-menu (accordion) instead of navigating away
+    if (drop && dtop) {
+      dtop.setAttribute('aria-expanded', 'false');
+      dtop.addEventListener('click', function (e) {
+        if (window.matchMedia('(max-width:900px)').matches) {
+          e.preventDefault();
+          var open = drop.classList.toggle('is-open');
+          dtop.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+      });
+    }
+    $$('a', nav).forEach(function (a) {
+      if (a.classList.contains('nav__dtop')) return;   // TALENT is the accordion toggle, handled above
+      a.addEventListener('click', function () { setNav(false); });
     });
-    $$('a', nav).forEach(function (a) { a.addEventListener('click', function () { nav.classList.remove('open'); tog.classList.remove('open'); tog.setAttribute('aria-expanded', 'false'); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('open')) setNav(false); });
   }
 
   var vids = $$('.vid');
