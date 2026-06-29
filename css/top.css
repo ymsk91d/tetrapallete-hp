@@ -107,8 +107,8 @@ html.js .loader{display:flex;position:fixed;inset:0;z-index:400;flex-direction:c
 html.js .reveal-pop{opacity:0;transform:translateY(30px) scale(.96)}
 
 /* sections */
-.sec{position:relative;z-index:2;padding:clamp(70px,9vw,130px) 0}
-.sh{margin-bottom:clamp(34px,5vw,56px)}
+.sec{position:relative;z-index:2;padding:clamp(46px,6vw,86px) 0}
+.sh{margin-bottom:clamp(22px,3.2vw,38px)}
 .sh__en{font-family:var(--en);font-weight:800;letter-spacing:.1em;font-size:clamp(1.55rem,4.4vw,2.6rem);line-height:1.15;color:#33272e;display:block;padding-left:54px;position:relative}
 .sh__en::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:40px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--pink),var(--orange))}
 .sh__ja{display:block;margin-top:.45em;padding-left:54px;font-family:var(--en);font-weight:500;font-size:clamp(.82rem,2vw,1rem);color:var(--ink-soft);letter-spacing:.04em}
@@ -265,8 +265,8 @@ html.js .reveal-pop{opacity:0;transform:translateY(30px) scale(.96)}
 @media(max-width:900px){.disco{grid-template-columns:repeat(2,1fr)}}
 
 /* footer */
-.ft{position:relative;z-index:2;background:#2a241f;color:#e9ddd1;padding:clamp(54px,7vw,84px) 0 26px;margin-top:clamp(40px,6vw,80px)}
-.ft__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(34px,5vw,64px)}
+.ft{position:relative;z-index:2;background:#2a241f;color:#e9ddd1;padding:clamp(44px,5.5vw,68px) 0 26px;margin-top:clamp(28px,4vw,56px)}
+.ft__grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(34px,5vw,64px);align-items:center}
 .hd__logo--ft{display:inline-block;font-size:1.6rem;color:#fff;margin-bottom:12px}
 .hd__logo--ft b{color:var(--orange)}
 .ft__tag{font-family:var(--mincho);font-size:1.05rem;color:#fff;margin-bottom:1.2em}
@@ -276,6 +276,9 @@ html.js .reveal-pop{opacity:0;transform:translateY(30px) scale(.96)}
 .ft h3{font-family:var(--mincho);font-size:1.3rem;color:#fff;margin-bottom:.6em}
 .ft p{color:#c9bcb0;font-size:.94rem;margin-bottom:1em}
 .ft__line a{color:var(--orange);font-family:var(--en)}.ft__line a:hover{text-decoration:underline}
+/* footer contact: email/tel on the left, the form button to their right */
+.ft__cta-row{display:flex;align-items:center;gap:clamp(18px,2.5vw,32px);flex-wrap:wrap}
+.ft__cta-row .ft__line{margin-bottom:0}
 .ft .btn--g{border-color:rgba(255,180,90,.6);color:#FFB45A;background:transparent}
 .ft .btn--g:hover{background:var(--orange);color:#fff;border-color:var(--orange)}
 .ft__co{font-size:.84rem;color:#a89c90;margin-top:1.4em}
@@ -351,7 +354,7 @@ html.js .reveal-pop{opacity:0;transform:translateY(30px) scale(.96)}
 .nav__menu a:hover{background:rgba(245,146,30,.1);color:var(--orange-d)}
 
 /* business sub-page hero */
-.phero{position:relative;z-index:2;padding:clamp(125px,16vw,196px) 0 clamp(34px,5vw,62px)}
+.phero{position:relative;z-index:2;padding:clamp(104px,12vw,150px) 0 clamp(22px,3.4vw,42px)}
 .crumb{font-family:var(--en);font-size:.78rem;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:18px}
 .crumb a:hover{color:var(--cc,var(--orange))}
 .phero__en{font-family:var(--en);font-weight:800;letter-spacing:.1em;font-size:clamp(1.9rem,5.6vw,3.3rem);line-height:1.14;color:var(--cc,var(--orange));display:block;padding-left:58px;position:relative}
@@ -362,7 +365,7 @@ html.js .reveal-pop{opacity:0;transform:translateY(30px) scale(.96)}
 
 /* TOP: tighter vertical rhythm between sections (sub-pages keep the roomier default) */
 body:not(.sub) .sec{padding:clamp(46px,6vw,86px) 0}
-body:not(.sub) .sh{margin-bottom:clamp(26px,3.5vw,40px)}
+body:not(.sub) .sh{margin-bottom:clamp(18px,2.6vw,32px)}
 body:not(.sub) .ft{margin-top:clamp(24px,3.5vw,50px)}
 body:not(.sub) .hero{padding:120px 0 64px}
 
@@ -402,7 +405,7 @@ body:not(.sub) .hero{padding:120px 0 64px}
 .aboutfeat{position:relative;border-radius:24px;overflow:hidden;display:flex;align-items:center;
   min-height:clamp(340px,44vw,520px);box-shadow:0 16px 50px rgba(80,60,40,.12)}
 .aboutfeat__bg{position:absolute;inset:0;background:linear-gradient(135deg,#FFE7F1,#EAF4FF)}
-.aboutfeat__bg img{width:100%;height:100%;object-fit:cover;object-position:center 74%}
+.aboutfeat__bg img{width:100%;height:100%;object-fit:cover;object-position:center 48%}
 .aboutfeat__bg img.miss{opacity:0}
 .aboutfeat__scrim{position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(90deg,rgba(255,253,247,.94) 0%,rgba(255,253,247,.8) 30%,rgba(255,253,247,.36) 58%,rgba(255,253,247,.14) 100%),
@@ -415,7 +418,7 @@ body:not(.sub) .hero{padding:120px 0 64px}
   .aboutfeat{min-height:auto}
   .aboutfeat__in{max-width:100%;padding:16px}
   .aboutfeat__scrim{background:linear-gradient(0deg,rgba(255,253,247,.88),rgba(255,253,247,.66))}
-  .aboutfeat__bg img{object-position:center 70%}
+  .aboutfeat__bg img{object-position:center 50%}
 }
 
 /* TOP: about / company */
@@ -434,12 +437,15 @@ body:not(.sub) .hero{padding:120px 0 64px}
   border:1px solid color-mix(in srgb,var(--cc,#F5921E) 20%,transparent)}
 .ctaband__in{position:relative;z-index:1;text-align:center;color:var(--ink);padding:clamp(36px,5vw,66px) 24px;max-width:760px;margin-inline:auto}
 .ctaband__en{font-family:var(--en);font-weight:700;letter-spacing:.3em;font-size:.76rem;text-transform:uppercase;color:color-mix(in srgb,var(--cc,#E0701A) 78%,#4a3a2c)}
-.ctaband h2{font-family:var(--mincho);font-weight:800;font-size:clamp(1.7rem,4.4vw,2.6rem);margin:.55em 0 .4em;color:var(--ink)}
-.ctaband p{margin-bottom:1.7em;color:var(--ink-soft)}
+/* scope to __in so BOTH variants (.ctaband on TOP / .ccband on sub-pages) get the spacing.
+   Previously these were .ctaband-only, so on .ccband pages the *{margin:0} reset left the
+   heading/text/buttons cramped together. */
+.ctaband__in h2{font-family:var(--mincho);font-weight:800;font-size:clamp(1.7rem,4.4vw,2.6rem);margin:.55em 0 .4em;color:var(--ink)}
+.ctaband__in p{margin-bottom:1.7em;color:var(--ink-soft)}
 .ctaband__btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
 /* talent: group blocks + member grid */
-.grp{padding-top:clamp(28px,5vw,58px)}
+.grp{padding-top:clamp(16px,2.8vw,34px)}
 .grphead{display:grid;grid-template-columns:1fr 1.08fr;gap:clamp(22px,3.5vw,46px);align-items:center}
 .grphead__ph{position:relative;aspect-ratio:4/3;border-radius:24px;overflow:hidden;
   background:linear-gradient(135deg,var(--cc,#FF6FA5),color-mix(in srgb,var(--cc,#FF6FA5) 35%,#FFD86B));box-shadow:0 18px 50px rgba(210,150,90,.2)}
