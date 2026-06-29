@@ -197,6 +197,65 @@
     }
   })();
 
+  /* MUSIC hub card: soft crossfading slideshow of ~10 random discography jackets.
+     Two div layers (ambient blurred backdrop + full jacket) crossfade on a timer; only
+     repaints on each fade (~every 3s), so it's cheap. Falls back to the static music.jpg
+     with no JS / reduced motion. */
+  (function () {
+    var host = $('.hub__img--ss');
+    if (!host) return;
+    var JACKETS = [
+      'hello-hello-hello.png', 'arcana.png', 'haloparide.jpg', 'starting-over.jpg',
+      'brand-new-pallete.jpg', 'halo-pallete2.jpg', 'halo-pallete.jpg', 'rainbow-pallete.jpg',
+      'kimi-dake-no-mirai.png', 'yumeutsutsu.png', 'reimei.jpg', 'trrry.jpg', 'the-center.jpg'
+    ].map(function (f) { return 'assets/images/discography/' + f; });
+
+    // shuffle, take ~10
+    for (var i = JACKETS.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = JACKETS[i]; JACKETS[i] = JACKETS[j]; JACKETS[j] = t; }
+    var list = JACKETS.slice(0, 10);
+
+    var ss = document.createElement('div'); ss.className = 'hubss';
+    function makeLayer() {
+      var l = document.createElement('div'); l.className = 'hubss__layer';
+      var bg = document.createElement('div'); bg.className = 'hubss__bg';
+      var fg = document.createElement('div'); fg.className = 'hubss__fg';
+      l.appendChild(bg); l.appendChild(fg); ss.appendChild(l);
+      return { l: l, bg: bg, fg: fg };
+    }
+    var layers = [makeLayer(), makeLayer()];
+    host.appendChild(ss);
+
+    function paint(layer, src) { layer.bg.style.backgroundImage = 'url("' + src + '")'; layer.fg.style.backgroundImage = 'url("' + src + '")'; }
+
+    var idx = 0, cur = 0;
+    paint(layers[0], list[0]);
+    layers[0].l.classList.add('is-on');   // first jacket shown immediately (covers music.jpg)
+
+    var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if (reduce || list.length < 2) return;  // hover just reveals a single static jacket
+
+    list.forEach(function (s) { var im = new Image(); im.src = s; });  // preload so fades don't flash
+
+    function advance() {
+      idx = (idx + 1) % list.length;
+      var next = cur ^ 1;
+      paint(layers[next], list[idx]);
+      layers[next].l.classList.add('is-on');
+      layers[cur].l.classList.remove('is-on');
+      cur = next;
+    }
+    // only run the crossfade while the card is hovered/focused (desktop pointers); idle otherwise.
+    var timer = null, card = host.closest('.hub__c');
+    function start() { if (!timer) timer = setInterval(advance, 2400); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    if (card && window.matchMedia('(pointer:fine)').matches) {
+      card.addEventListener('mouseenter', start);
+      card.addEventListener('mouseleave', stop);
+      card.addEventListener('focusin', start);
+      card.addEventListener('focusout', stop);
+    }
+  })();
+
   /* Real fluid sim via webgl-fluid-enhanced for the liquid motion the brand wants.
      White-out mitigation (the dye buffer is ADDITIVE, so heavy same-spot overlap can clip
      toward white — worst on slow grinding): keep per-splat dye LOW (brightness/splatRadius),
