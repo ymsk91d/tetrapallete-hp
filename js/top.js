@@ -6,6 +6,17 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var PAL = ['#FF6FA5', '#F5921E', '#3FA9F5', '#33C892', '#B97BF0', '#F7B500'];
 
+  /* ---- casual image save-deterrent ----
+     Stops right-click "Save image" and drag-to-save on photos/media. This only deters casual
+     saving — screenshots, devtools and direct image URLs can never be blocked. */
+  var MEDIA_SEL = 'img,video,picture,.vid__th,.hubss,.grphead__ph,.mem__ph,.disc__art,.aboutfeat__bg,.hub__img,.imgband,.mmodal__media,.hero__bg';
+  document.addEventListener('contextmenu', function (e) {
+    if (e.target && e.target.closest && e.target.closest(MEDIA_SEL)) e.preventDefault();
+  });
+  document.addEventListener('dragstart', function (e) {
+    if (e.target && e.target.closest && e.target.closest('img,video,picture')) e.preventDefault();
+  });
+
   /* ---- base UI ---- */
   var y = $('#year'); if (y) y.textContent = new Date().getFullYear();
   var hd = $('#hd');

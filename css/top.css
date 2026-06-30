@@ -10,6 +10,10 @@ html{scroll-behavior:smooth;overflow-x:hidden;scroll-padding-top:84px}
 body{font-family:var(--gothic);color:var(--ink);background:var(--cream);line-height:1.85;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;word-break:auto-phrase}
 img{max-width:100%;display:block}
+/* casual save-deterrent (NOT real protection — screenshots/devtools still work):
+   block image drag, text-selection and the iOS long-press "Save Image" callout. */
+img,video{-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.vid__th,.hubss,.grphead__ph,.mem__ph,.disc__art,.aboutfeat__bg,.hub__img,.imgband,.mmodal__media,.hero__bg{-webkit-touch-callout:none;user-select:none;-webkit-user-select:none}
 a{color:inherit;text-decoration:none}
 h1,h2,h3{text-wrap:balance}
 p,li{text-wrap:pretty;line-break:strict}
